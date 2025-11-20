@@ -1,6 +1,8 @@
 import Image from "next/image";
+
 import logo from "../public/logo.jpg";
 import profile from "../public/profile.jpg";
+import Input from "./Input";
 
 function Navbar() {
   return (
@@ -15,12 +17,8 @@ function Navbar() {
         />
         <h1>Community</h1>
       </div>
-      <div className="items-center justify-center flex">
-        <input
-          type="text"
-          className=" px-4 py-2 w-[600px] h-[35px] bg-primary rounded-md"
-          placeholder="Search anything"
-        />
+      <div className="w-[600px]">
+        <Input placeholder={"Search anything..."} />
       </div>
       <div>
         <Image
