@@ -1,3 +1,4 @@
+import ROUTES from "@/routes";
 import Link from "next/link";
 import { IoHome } from "react-icons/io5";
 
@@ -25,7 +26,7 @@ function LeftSidebar() {
         </li>
         <li className="bg-main py-3 px-3 rounded-xl">
           <Link
-            href={"/questions"}
+            href={ROUTES.Question}
             className="text-md font-bold flex items-center gap-2"
           >
             <IoHome />

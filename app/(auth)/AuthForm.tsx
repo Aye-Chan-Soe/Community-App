@@ -4,13 +4,14 @@ import google from "@/public/google.png";
 import github from "@/public/github.png";
 import { Bounce, toast } from "react-toastify";
 import { signIn } from "next-auth/react";
+import ROUTES from "@/routes";
 // import { signIn } from "@/auth";
 
 function AuthForm() {
   let oAuthSignIn = async (type: "google" | "github") => {
     try {
       await signIn("type", {
-        redirectTo: "/",
+        redirectTo: ROUTES.HOME,
       });
     } catch (e) {
       if (e instanceof Error) {

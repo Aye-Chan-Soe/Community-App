@@ -3,6 +3,7 @@ import Image from "next/image";
 import logo from "../public/logo.jpg";
 import profile from "../public/profile.jpg";
 import Input from "./Input";
+import SearchInput from "./SearchInput";
 
 function Navbar() {
   return (
@@ -18,7 +19,7 @@ function Navbar() {
         <h1>Community</h1>
       </div>
       <div className="w-[600px]">
-        <Input placeholder={"Search anything..."} />
+        <SearchInput />
       </div>
       <div>
         <Image
