@@ -1,11 +1,13 @@
 "use client";
-import router, { useRouter } from "next/navigation";
+import router, { useRouter, useSearchParams } from "next/navigation";
 import queryString from "query-string";
 import React, { useState } from "react";
 
 function Filter() {
+  const searchParams = useSearchParams();
   const router = useRouter();
-  const [filter, setFilter] = useState("");
+  const [filter, setFilter] = useState(searchParams.get("filter") || "");
+
   const handleFilter = (filterType: string) => {
     if (filterType === filter) {
       setFilter("");
@@ -32,16 +34,16 @@ function Filter() {
       {filter}
       <button
         onClick={() => handleFilter("react")}
-        className={` px-4 py-2 text-gray-300 rounded-xl ${
-          filter === "react" ? "bg-main" : "bg-primary"
+        className={` px-4 py-2 w-[100px] text-gray-300 rounded-xl ${
+          filter === "react" ? "bg-main" : "bg-tertiary"
         }`}
       >
         React
       </button>
       <button
         onClick={() => handleFilter("vue")}
-        className={` px-4 py-2 text-gray-300 rounded-xl ${
-          filter === "vue" ? "bg-main" : "bg-primary"
+        className={` px-4 py-2 w-[100px] text-gray-300 rounded-xl ${
+          filter === "vue" ? "bg-main" : "bg-tertiary"
         }`}
       >
         Vue
