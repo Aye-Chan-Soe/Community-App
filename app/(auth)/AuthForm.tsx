@@ -7,9 +7,9 @@ import { signIn } from "next-auth/react";
 // import { signIn } from "@/auth";
 
 function AuthForm() {
-  let oAuthSignIn = async () => {
+  let oAuthSignIn = async (type: "google" | "github") => {
     try {
-      await signIn("github", {
+      await signIn("type", {
         redirectTo: "/",
       });
     } catch (e) {
@@ -30,7 +30,11 @@ function AuthForm() {
   };
   return (
     <div className="flex space-x-3">
-      <Button varient="outline" icon={google}>
+      <Button
+        varient="outline"
+        icon={google}
+        onClick={() => oAuthSignIn("github")}
+      >
         Login with Google
       </Button>
 
@@ -45,7 +49,11 @@ function AuthForm() {
         Login with Github
       </Button>
         </form> */}
-      <Button varient="outline" icon={github} onClick={oAuthSignIn}>
+      <Button
+        varient="outline"
+        icon={github}
+        onClick={() => oAuthSignIn("github")}
+      >
         Login with Github
       </Button>
     </div>
