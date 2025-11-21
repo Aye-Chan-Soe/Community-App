@@ -3,67 +3,63 @@ import { IoHome } from "react-icons/io5";
 
 function LeftSidebar() {
   return (
-    <div className="flex">
-      <div className="w-1/5 px-5 py-2">
-        <ul className="space-y-5">
-          <li className="bg-main py-3 px-3 rounded-xl">
-            <Link
-              href={"/"}
-              className="text-md font-bold flex items-center gap-2"
-            >
-              <IoHome />
-              Home
-            </Link>
-          </li>
-          <li className="bg-main py-3 px-3 rounded-xl">
-            <Link
-              href={"/"}
-              className="text-md font-bold flex items-center gap-2"
-            >
-              <IoHome />
-              Tags
-            </Link>
-          </li>
-          <li className="bg-main py-3 px-3 rounded-xl">
-            <Link
-              href={"/"}
-              className="text-md font-bold flex items-center gap-2"
-            >
-              <IoHome />
-              Popular
-            </Link>
-          </li>
-          <li className="bg-main py-3 px-3 rounded-xl">
-            <Link
-              href={"/"}
-              className="text-md font-bold flex items-center gap-2"
-            >
-              <IoHome />
-              Ask a new question
-            </Link>
-          </li>
-          <li className="bg-main py-3 px-3 rounded-xl">
-            <Link
-              href={"/"}
-              className="text-md font-bold flex items-center gap-2"
-            >
-              <IoHome />
-              Newest
-            </Link>
-          </li>
-          <li className="bg-red-600 py-3 px-3 rounded-xl">
-            <Link
-              href={"/"}
-              className="text-md font-bold flex items-center gap-2"
-            >
-              <IoHome />
-              Logout
-            </Link>
-          </li>
-        </ul>
-      </div>
-      <div className="w-3/5">2</div>
-      <div className="w-1/5">3</div>
+    <div className="w-1/5 px-5 py-2">
+      <ul className="space-y-5">
+        <li className="bg-main py-3 px-3 rounded-xl">
+          <Link
+            href={"/"}
+            className="text-md font-bold flex items-center gap-2"
+          >
+            <IoHome />
+            Home
+          </Link>
+        </li>
+        <li className="bg-main py-3 px-3 rounded-xl">
+          <Link
+            href={"/"}
+            className="text-md font-bold flex items-center gap-2"
+          >
+            <IoHome />
+            Tags
+          </Link>
+        </li>
+        <li className="bg-main py-3 px-3 rounded-xl">
+          <Link
+            href={"/questions"}
+            className="text-md font-bold flex items-center gap-2"
+          >
+            <IoHome />
+            Popular Questions
+          </Link>
+        </li>
+        <li className="bg-main py-3 px-3 rounded-xl">
+          <Link
+            href={"/"}
+            className="text-md font-bold flex items-center gap-2"
+          >
+            <IoHome />
+            Ask a new question
+          </Link>
+        </li>
+        <li className="bg-main py-3 px-3 rounded-xl">
+          <Link
+            href={"/"}
+            className="text-md font-bold flex items-center gap-2"
+          >
+            <IoHome />
+            Newest
+          </Link>
+        </li>
+        <li className="bg-red-600 py-3 px-3 rounded-xl">
+          <Link
+            href={"/"}
+            className="text-md font-bold flex items-center gap-2"
+          >
+            <IoHome />
+            Logout
+          </Link>
+        </li>
+      </ul>
     </div>
   );
 }
