@@ -4,16 +4,18 @@ import Image, { StaticImageData } from "next/image";
 function Button({
   icon,
   children,
-  type = "normal",
+  varient = "normal",
+  ...props
 }: {
   icon?: string | StaticImageData;
   children: React.ReactNode;
-  type?: "normal" | "outline";
-}) {
+  varient?: "normal" | "outline";
+} & React.ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
     <button
+      {...props}
       className={` w-full space-x-3 border-2 border-main rounded-lg px-4 py-2 ${
-        type === "outline" ? "border-main border-2" : "bg-main"
+        varient === "outline" ? "border-main border-2" : "bg-main"
       }
         ${icon ? "flex items-center" : ""}`}
     >
