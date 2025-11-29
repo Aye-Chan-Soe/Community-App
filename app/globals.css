@@ -1,3 +1,4 @@
+@import "highlight.js/styles/atom-one-dark.css";
 @import "tailwindcss";
 
 @theme {
@@ -7,3 +8,5 @@
   --color-card: #070e27;
   --color-tertiary: #00154a;
 }
+
+@plugin "@tailwindcss/typography";
