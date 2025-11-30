@@ -26,7 +26,7 @@ function LeftSidebar() {
         </li>
         <li className="bg-main py-3 px-3 rounded-xl">
           <Link
-            href={ROUTES.Question}
+            href={ROUTES.QUESTION}
             className="text-md font-bold flex items-center gap-2"
           >
             <IoHome />
