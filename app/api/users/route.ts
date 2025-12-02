@@ -1,27 +1,14 @@
 import User from "@/database/user.model";
 import dbConnect from "@/lib/dbConnect";
-import { NextResponse } from "next/server";
+import { handleSuccessResponse, handleErrorResponse } from "@/lib/response";
 
 export async function GET() {
   try {
     await dbConnect();
     let users = await User.find();
-    return NextResponse.json(
-      {
-        data: users,
-        success: true,
-      },
-      { status: 200 }
-    );
+    return handleSuccessResponse(users);
   } catch (e: unknown) {
-    return NextResponse.json(
-      {
-        message: e instanceof Error ? e.message : "Something went wrong",
-        success: false,
-        status: 500,
-      },
-      { status: 500 }
-    );
+    return handleErrorResponse(e);
   }
 }
 
@@ -37,22 +24,8 @@ export async function POST(request: Request) {
     if (existingUsername) throw new Error("Username already exist!");
 
     const newUser = await User.create(body);
-    return NextResponse.json(
-      {
-        data: newUser,
-        success: true,
-        status: 201,
-      },
-      { status: 201 }
-    );
+    return handleSuccessResponse(newUser, 201);
   } catch (e: unknown) {
-    return NextResponse.json(
-      {
-        message: e instanceof Error ? e.message : "Something went wrong",
-        success: false,
-        status: 500,
-      },
-      { status: 500 }
-    );
+    return handleErrorResponse(e);
   }
 }
