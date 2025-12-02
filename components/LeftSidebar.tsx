@@ -8,7 +8,7 @@ function LeftSidebar() {
       <ul className="space-y-5">
         <li className="bg-main py-3 px-3 rounded-xl">
           <Link
-            href={"/"}
+            href={ROUTES.HOME}
             className="text-md font-bold flex items-center gap-2"
           >
             <IoHome />
