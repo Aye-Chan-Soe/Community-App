@@ -1,6 +1,8 @@
 import User from "@/database/user.model";
 import dbConnect from "@/lib/dbConnect";
 import { handleSuccessResponse, handleErrorResponse } from "@/lib/response";
+import userSchema from "@/lib/userSchema";
+import ValidateBody from "@/lib/validateBody";
 
 export async function GET() {
   try {
@@ -16,6 +18,8 @@ export async function POST(request: Request) {
   try {
     await dbConnect();
     let body = await request.json();
+
+    ValidateBody(body, userSchema);
 
     let existingEmail = await User.findOne({ email: body.email });
     if (existingEmail) throw new Error("Email already exist!");
