@@ -1,9 +1,14 @@
 import { ZodError, ZodSchema } from "zod";
-import userSchema from "./userSchema";
 
-const ValidateBody = (body: unknown, schema: ZodSchema) => {
+const ValidateBody = (
+  body: unknown,
+  schema: ZodSchema,
+  partial: boolean = false
+) => {
   //Validation
-  const validatedData = schema.safeParse(body);
+  const validatedData = partial
+    ? schema.partial().safeParse(body)
+    : schema.safeParse(body);
   if (!validatedData.success) {
     throw new ZodError(validatedData.error.issues);
   }
