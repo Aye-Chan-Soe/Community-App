@@ -2,6 +2,7 @@ import { auth } from "@/auth";
 import ButtonLink from "@/components/ButtonLink";
 import Filter from "@/components/Filter";
 import ThreadCard from "@/components/ThreadCard";
+import { api } from "@/lib/api";
 import fetchHandler from "@/lib/fetchHandler";
 import ROUTES from "@/routes";
 
@@ -15,7 +16,7 @@ async function page({
 }) {
   const session = await auth();
   const { search, filter } = await searchParams;
-  let response = await fetchHandler("http://localhost:3000/api/users");
+  let response = await api.users.getAll();
   console.log(response);
   console.log(session);
   return (
