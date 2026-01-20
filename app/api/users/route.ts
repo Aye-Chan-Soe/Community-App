@@ -17,11 +17,11 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     await dbConnect();
-    let body = await request.json();
+    const body = await request.json();
 
     ValidateBody(body, userSchema);
 
-    let existingEmail = await User.findOne({ email: body.email });
+    const existingEmail = await User.findOne({ email: body.email });
     if (existingEmail) throw new Error("Email already exist!");
 
     const existingUsername = await User.findOne({ username: body.username });

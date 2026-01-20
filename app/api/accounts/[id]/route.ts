@@ -1,6 +1,6 @@
-import User from "@/database/user.model";
+import Account from "@/database/account.model";
 import { handleErrorResponse, handleSuccessResponse } from "@/lib/response";
-import userSchema from "@/lib/userSchema";
+import accountSchema from "@/lib/accountSchema";
 import validateBody from "@/lib/validateBody";
 import { Types } from "mongoose";
 
@@ -11,13 +11,13 @@ export async function GET(
   try {
     const { id } = await params;
     if (!Types.ObjectId.isValid(id)) {
-      throw new Error("Invalid user id!");
+      throw new Error("Invalid account id!");
     }
-    const user = await User.findById(id);
-    if (!user) {
-      throw new Error("User not found!");
+    const account = await Account.findById(id);
+    if (!account) {
+      throw new Error("Account not found!");
     }
-    return handleSuccessResponse(user);
+    return handleSuccessResponse(account);
   } catch (e) {
     return handleErrorResponse(e);
   }
@@ -30,13 +30,13 @@ export async function DELETE(
   try {
     const { id } = await params;
     if (!Types.ObjectId.isValid(id)) {
-      throw new Error("Invalid user id!");
+      throw new Error("Invalid account id!");
     }
-    const user = await User.findByIdAndDelete(id);
-    if (!user) {
-      throw new Error("User not found!");
+    const account = await Account.findByIdAndDelete(id);
+    if (!account) {
+      throw new Error("Account not found!");
     }
-    return handleSuccessResponse(user);
+    return handleSuccessResponse(account);
   } catch (e) {
     return handleErrorResponse(e);
   }
@@ -50,17 +50,17 @@ export async function PUT(
     const { id } = await params;
     const body = await request.json();
     if (!Types.ObjectId.isValid(id)) {
-      throw new Error("Invalid user id!");
+      throw new Error("Invalid account id!");
     }
 
-    const validatedData = validateBody(body, userSchema, true);
-    const user = await User.findByIdAndUpdate(id, validatedData.data, {
+    const validatedData = validateBody(body, accountSchema, true);
+    const account = await Account.findByIdAndUpdate(id, validatedData.data, {
       new: true,
     });
-    if (!user) {
-      throw new Error("User not found!");
+    if (!account) {
+      throw new Error("Account not found!");
     }
-    return handleSuccessResponse(user);
+    return handleSuccessResponse(account);
   } catch (e) {
     return handleErrorResponse(e);
   }
