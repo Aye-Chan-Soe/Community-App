@@ -1,6 +1,6 @@
 import Account from "@/database/account.model";
 import { handleErrorResponse, handleSuccessResponse } from "@/lib/response";
-import accountSchema from "@/lib/accountSchema";
+import accountSchema from "@/lib/schemas/accountSchema";
 import validateBody from "@/lib/validateBody";
 import { Types } from "mongoose";
 

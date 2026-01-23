@@ -1,7 +1,7 @@
 import User from "@/database/user.model";
 import dbConnect from "@/lib/dbConnect";
 import { handleSuccessResponse, handleErrorResponse } from "@/lib/response";
-import userSchema from "@/lib/userSchema";
+import userSchema from "@/lib/schemas/userSchema";
 import ValidateBody from "@/lib/validateBody";
 
 export async function GET() {

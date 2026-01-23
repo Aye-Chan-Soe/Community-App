@@ -1,5 +1,5 @@
 import Account from "@/database/account.model";
-import accountSchema from "@/lib/accountSchema";
+import accountSchema from "@/lib/schemas/accountSchema";
 import dbConnect from "@/lib/dbConnect";
 import { handleSuccessResponse, handleErrorResponse } from "@/lib/response";
 import ValidateBody from "@/lib/validateBody";
