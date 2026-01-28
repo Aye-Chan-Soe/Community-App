@@ -14,7 +14,7 @@ export default async function fetchHandler(
     controller.abort();
   }, timeout);
 
-  const defaultHeader = {
+  const defautHeaders = {
     "Content-Type": "application/json",
     Accept: "application/json",
   };
@@ -22,7 +22,7 @@ export default async function fetchHandler(
   const config = {
     ...restOptions,
     headers: {
-      ...defaultHeader,
+      ...defautHeaders,
       ...customHeaders,
     },
     signal: controller.signal,
@@ -32,12 +32,12 @@ export default async function fetchHandler(
     const response = await fetch(url, config);
     clearTimeout(id);
     if (!response.ok) {
-      throw new Error("HTTP ERROR!");
+      throw new Error("HTTP ERROR");
     }
     return await response.json();
   } catch (error) {
-    if (error instanceof Error && error.name == "AbortError") {
-      throw new Error("Request Timeout!");
+    if (error instanceof Error && error.name === "AbortError") {
+      throw new Error("Request Timeout");
     } else {
       return handleErrorResponse(error);
     }

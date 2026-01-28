@@ -8,39 +8,32 @@ export const api = {
     create: (data: {
       name: string;
       email: string;
-      username: string;
+      usersname: string;
       image: string;
-    }) => {
+    }) =>
       fetchHandler(API_URL + "/users", {
         method: "POST",
         body: JSON.stringify(data),
-      });
-    },
-    getById: (id: string) => {
-      fetchHandler(API_URL + "/users/" + id);
-    },
-    getByEmail: (email: string) => {
+      }),
+    getById: (id: string) => fetchHandler(API_URL + "/users/" + id),
+    getByEmail: (email: string) =>
       fetchHandler(API_URL + "/users/email", {
         method: "POST",
         body: JSON.stringify({ email }),
-      });
-    },
+      }),
     update: (
       id: string,
       data: { name?: string; email?: string; username?: string; image?: string }
-    ) => {
+    ) =>
       fetchHandler(API_URL + "/users/" + id, {
         method: "PUT",
         body: JSON.stringify(data),
-      });
-    },
-    delete: (id: string) => {
+      }),
+    delete: (id: string) =>
       fetchHandler(API_URL + "/users/" + id, {
         method: "DELETE",
-      });
-    },
+      }),
   },
-
   accounts: {
     getAll: () => fetchHandler(API_URL + "/accounts"),
     create: (data: {
@@ -50,21 +43,17 @@ export const api = {
       password: string;
       provider: string;
       providerAccountId: string;
-    }) => {
+    }) =>
       fetchHandler(API_URL + "/accounts", {
         method: "POST",
         body: JSON.stringify(data),
-      });
-    },
-    getById: (id: string) => {
-      fetchHandler(API_URL + "/accounts/" + id);
-    },
-    getByProvider: (provider: string) => {
+      }),
+    getById: (id: string) => fetchHandler(API_URL + "/accounts/" + id),
+    getByProvider: (providerAccountId: string) =>
       fetchHandler(API_URL + "/accounts/provider", {
         method: "POST",
-        body: JSON.stringify({ provider }),
-      });
-    },
+        body: JSON.stringify({ providerAccountId }),
+      }),
     update: (
       id: string,
       data: {
@@ -75,19 +64,16 @@ export const api = {
         provider?: string;
         providerAccountId?: string;
       }
-    ) => {
+    ) =>
       fetchHandler(API_URL + "/accounts/" + id, {
         method: "PUT",
         body: JSON.stringify(data),
-      });
-    },
-    delete: (id: string) => {
+      }),
+    delete: (id: string) =>
       fetchHandler(API_URL + "/accounts/" + id, {
         method: "DELETE",
-      });
-    },
+      }),
   },
-
   auth: {
     oauthSignIn: ({
       provider,

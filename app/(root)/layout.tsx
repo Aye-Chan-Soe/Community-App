@@ -7,19 +7,17 @@ import "../globals.css";
 
 function layout({ children }: { children: React.ReactNode }) {
   return (
-    <html>
-      <body className="bg-secondary text-white">
-        <Navbar />
+    <>
+      <Navbar />
 
-        <div className="flex">
-          <LeftSidebar />
-          <div className="w-3/5">{children}</div>
-          <div className="w-1/5">
-            <RightSidebar />
-          </div>
+      <div className="flex">
+        <LeftSidebar />
+        <div className="w-3/5">{children}</div>
+        <div className="w-1/5">
+          <RightSidebar />
         </div>
-      </body>
-    </html>
+      </div>
+    </>
   );
 }
 

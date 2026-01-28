@@ -1,37 +1,33 @@
+import mongoose from "mongoose";
+import slugify from "slugify";
+
 import Account from "@/database/account.model";
 import User from "@/database/user.model";
 import dbConnect from "@/lib/dbConnect";
 import { handleSuccessResponse } from "@/lib/response";
-import signinWithOauthSchema from "@/lib/schemas/signinWithOauthSchema";
-import SignnWithOauthSchema from "@/lib/schemas/signinWithOauthSchema";
-import ValidateBody from "@/lib/validateBody";
-import slugify from "slugify";
+import SigninWithOauthSchema from "@/lib/schemas/SignInWithOauthSchema";
+import validateBody from "@/lib/validateBody";
 
 export async function POST(request: Request) {
-  let { provider, providerAccountId, user } = await request.json();
+  const { provider, providerAccountId, user } = await request.json();
   await dbConnect();
-
-  // set up session
   const session = await mongoose.startSession();
   session.startTransaction();
 
   try {
-    const validatedData = ValidateBody(
+    const validatedData = validateBody(
       {
         provider,
         providerAccountId,
         user,
       },
-      signinWithOauthSchema
+      SigninWithOauthSchema
     );
 
-    let { email, image, name, username } = validatedData.data.user;
-
-    // find user
+    const { email, image, name, username } = validatedData.data.user;
     let existingUser = await User.findOne({
       email,
     }).session(session);
-
     if (!existingUser) {
       [existingUser] = await User.create(
         [
@@ -62,7 +58,6 @@ export async function POST(request: Request) {
       ).session(session);
     }
 
-    // find account
     const existingAccount = await Account.findOne({
       userId: existingUser._id,
       provider,
@@ -84,7 +79,6 @@ export async function POST(request: Request) {
       );
     }
 
-    // commit transaction
     await session.commitTransaction();
     return handleSuccessResponse({
       existingUser,
