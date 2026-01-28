@@ -2,9 +2,9 @@
 
 import dbConnect from "../dbConnect";
 import mongoose from "mongoose";
-import { actionError } from "../response";
-import ValidateBody from "../validateBody";
-import SignupSchema from "../schemas/SignupSchema";
+import { actionError } from "@/lib/response";
+import validateBody from "../validateBody";
+import SignUpSchema from "../schemas/SignupSchema";
 import User from "@/database/user.model";
 import Account from "@/database/account.model";
 import bcrypt from "bcryptjs";
@@ -17,42 +17,51 @@ export async function SignUpWithCredentials(params: {
   password: string;
 }) {
   await dbConnect();
+  console.log("db connected");
   const session = await mongoose.startSession();
   session.startTransaction();
 
   try {
-    const validatedData = ValidateBody(params, SignupSchema);
-    const { name, username, email, password } = validatedData.data;
+    const validatedData = validateBody(params, SignUpSchema);
+    const { name, email, username, password } = validatedData.data;
 
-    const exisitingUser = await User.findOne({ email });
-    if (exisitingUser) {
-      throw new Error("Email already exists");
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      throw new Error("Email Already Exists");
     }
 
-    const exisitingUserName = await User.findOne({ username });
-    if (exisitingUserName) {
-      throw new Error("Username already exists");
+    const existingUserName = await User.findOne({ username });
+    if (existingUserName) {
+      throw new Error("Username Already Exists");
     }
 
-    const [newUser] = await User.create([
+    const [newUser] = await User.create(
+      [
+        {
+          name,
+          username,
+          email,
+        },
+      ],
       {
-        name,
-        username,
-        email,
-      },
-      { session },
-    ]);
+        session,
+      }
+    );
 
-    await Account.create([
+    await Account.create(
+      [
+        {
+          userId: newUser._id,
+          name,
+          provider: "credentials",
+          providerAccountId: email,
+          password: await bcrypt.hash(password, 10),
+        },
+      ],
       {
-        userId: newUser._id,
-        name,
-        provider: "credentials",
-        providerAccountId: email,
-        password: await bcrypt.hash(password, 10),
-      },
-      { session },
-    ]);
+        session,
+      }
+    );
 
     await session.commitTransaction();
     await signIn("credentials", { email, password, redirect: false });

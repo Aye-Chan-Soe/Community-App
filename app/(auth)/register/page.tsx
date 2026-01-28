@@ -1,11 +1,10 @@
 import Image from "next/image";
 
-import Input from "@/components/Input";
 import logo from "../../../public/logo.jpg";
 import Button from "@/components/Button";
-import AuthForm from "../AuthForm";
 import Link from "next/link";
 import ROUTES from "@/routes";
+import RegisterForm from "../components/RegisterForm";
 
 function page() {
   return (
@@ -33,27 +32,7 @@ function page() {
         </div>
       </div>
       <div className="w-2/4 h-screen flex justify-center items-center">
-        <div className=" w-4/5 space-y-6">
-          <h3 className="text-xl font-semibold">
-            Sign Up to <span className="font-bold">Community</span> Forum
-          </h3>
-          <div>
-            <Input label="Name" />
-          </div>
-          <div>
-            <Input label="Username" />
-          </div>
-          <div>
-            <Input label="Email address" />
-          </div>
-          <div>
-            <Input label="Password" />
-          </div>
-          <div>
-            <Button>Register</Button>
-          </div>
-          <AuthForm />
-        </div>
+        <RegisterForm />
       </div>
     </div>
   );

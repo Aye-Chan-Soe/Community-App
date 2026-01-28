@@ -3,7 +3,7 @@ import Image from "next/image";
 import Input from "@/components/Input";
 import logo from "../../../public/logo.jpg";
 import Button from "@/components/Button";
-import AuthForm from "../AuthForm";
+import AuthForm from "../components/AuthForm";
 import Link from "next/link";
 import ROUTES from "@/routes";
 

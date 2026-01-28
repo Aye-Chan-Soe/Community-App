@@ -43,11 +43,9 @@ export const actionError = (e: unknown) => {
     details = e.flatten().fieldErrors;
     message = "Validation Error!";
   }
-
-  return;
-  {
-    message;
-    success: false;
-    details;
-  }
+  return {
+    message,
+    success: false,
+    details,
+  };
 };
