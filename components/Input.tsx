@@ -4,7 +4,8 @@ function Input({
   placeholder,
   label,
   text,
-  ...props
+  type,
+  ...restProps
 }: {
   placeholder?: string;
   label?: string;
@@ -18,8 +19,8 @@ function Input({
         </label>
       )}
       <input
-        {...props}
-        type="text"
+        {...restProps}
+        type={type || "text"}
         className=" px-4 py-2 w-full h-[35px] bg-primary rounded-md"
         placeholder={placeholder}
       />

@@ -4,7 +4,8 @@ import logo from "../../../public/logo.jpg";
 import Button from "@/components/Button";
 import Link from "next/link";
 import ROUTES from "@/routes";
-import RegisterForm from "../components/RegisterForm";
+import AuthenticationForm from "../components/AuthenticationForm";
+import { SignUpWithCredentials } from "@/lib/action/SignUpWithCredentials.action";
 
 function page() {
   return (
@@ -32,7 +33,10 @@ function page() {
         </div>
       </div>
       <div className="w-2/4 h-screen flex justify-center items-center">
-        <RegisterForm />
+        <AuthenticationForm
+          type="register"
+          submitAction={SignUpWithCredentials}
+        />
       </div>
     </div>
   );

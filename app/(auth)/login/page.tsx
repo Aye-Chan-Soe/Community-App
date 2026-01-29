@@ -1,11 +1,11 @@
 import Image from "next/image";
 
-import Input from "@/components/Input";
 import logo from "../../../public/logo.jpg";
 import Button from "@/components/Button";
-import AuthForm from "../components/AuthForm";
 import Link from "next/link";
 import ROUTES from "@/routes";
+import AuthenticationForm from "../components/AuthenticationForm";
+import { SignInWithCredentials } from "@/lib/action/SignInWithCredentials.action";
 
 function page() {
   return (
@@ -33,21 +33,7 @@ function page() {
         </div>
       </div>
       <div className="w-2/4 h-screen flex justify-center items-center">
-        <div className=" w-4/5 space-y-6">
-          <h3 className="text-xl font-semibold">
-            Sign in to <span className="font-bold">Community</span> Forum
-          </h3>
-          <div>
-            <Input label="Email address" />
-          </div>
-          <div>
-            <Input label="Password" />
-          </div>
-          <div>
-            <Button>Login</Button>
-          </div>
-          <AuthForm />
-        </div>
+        <AuthenticationForm type="login" submitAction={SignInWithCredentials} />
       </div>
     </div>
   );
