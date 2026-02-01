@@ -1,10 +1,6 @@
 "use client";
 
-import Bold from "@tiptap/extension-bold";
-import Heading from "@tiptap/extension-heading";
-import Italic from "@tiptap/extension-italic";
 import Link from "@tiptap/extension-link";
-import { BulletList, OrderedList, ListItem } from "@tiptap/extension-list";
 import { useEditor, EditorContent, useEditorState } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { useCallback } from "react";
@@ -45,17 +41,10 @@ const Editor = ({
     },
     extensions: [
       StarterKit,
-      Bold,
-      Italic,
-      BulletList,
-      OrderedList,
-      ListItem,
       CodeBlockLowlight.configure({
         lowlight,
       }),
-      Heading.configure({
-        levels: [1, 2, 3],
-      }),
+
       Link.configure({
         openOnClick: false,
         autolink: true,
